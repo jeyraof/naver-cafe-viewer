@@ -1,0 +1,35 @@
+div#wrap {
+    width: 770px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+div.form {
+    padding: 20px 20px 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+div.content {
+    padding: 0 20px;
+    border-left: 2px solid green;
+}
+
+div.content h1.title {
+    margin:0;
+    padding:0;
+}
+
+div.content div.body {
+    margin-top: 20px;
+}
+
+div.content img {
+    width: 100%;
+    height: auto;
+}
+
+div.content p {
+    margin: 0;
+    padding: 0;
+}
