@@ -1,0 +1,1 @@
+.venv/bin/gunicorn -b 0.0.0.0:8001 -n 'naver-cafe-viewer' -D cafe_viewer:app
