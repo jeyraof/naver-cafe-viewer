@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 from requests import get
 from lxml import html
 
@@ -11,6 +11,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/static/<path:filename>')
+def static(filename):
+    return send_file(filename)
 
 
 @app.route('/parse', methods=['POST'])
