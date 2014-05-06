@@ -13,11 +13,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/static/<path:filename>')
-def static(filename):
-    return send_from_directory('static', filename)
-
-
 @app.route('/parse', methods=['POST'])
 def parse():
     url = request.form.get('url')
