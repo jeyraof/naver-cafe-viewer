@@ -10,7 +10,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    url = request.args.get('url', None)
+    return render_template('index.html',
+                           url=url)
 
 
 @app.route('/parse', methods=['POST'])

@@ -16,7 +16,8 @@
         <div class="form">
             <form class="url pure-form" action="{{ url_for('parse') }}" method="post" onsubmit="return false;">
                 <label>
-                    <input class="pure-input-1" type="text" placeholder="http://cafe.naver.com/..." name="url" value="http://cafe.naver.com/dieselmania/9030257"/>
+                    <input class="pure-input-1" type="text" placeholder="http://cafe.naver.com/..." name="url"
+                           value="{% if url %}{{ url }}{% else %}http://cafe.naver.com/linksjeansmania/90001{% endif %}"/>
                 </label>
             </form>
         </div>
@@ -29,5 +30,6 @@
             <div class="body"></div>
         </div>
     </div>
+    {% if url %}<script>crawl_article($('form.url'));</script>{% endif %}
 </body>
 </html>
