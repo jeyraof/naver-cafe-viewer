@@ -6,10 +6,11 @@ from requests import get
 from lxml import html
 from settings import FLASK_APP_CONFIG
 
+from datetime import datetime
 
 app = Flask(__name__)
 app.config.update(FLASK_APP_CONFIG)
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 
 @app.route('/')
@@ -85,5 +86,23 @@ def parse():
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.Integer, primary_key=1)
-    club_id = db.Column(db.String(100), index=1)
-    article_id = db.Column(db.Integer, index=1)
+    club_id = db.Column(db.Integer, index=1, nullable=0)
+    article_id = db.Column(db.Integer, index=1, nullable=0)
+    content = db.Column(db.Text)
+    author = db.Column(db.String(50))
+    hit = db.Column(db.Integer, default=0)
+    last_view = db.Column(db.DateTime, nullable=0, default=0)
+
+    def __init__(self, **kwargs):
+        self.last_view = datetime.utcnow()
+        super(Article, self).__init__(**kwargs)
+
+    def get_by(self, a_id):
+        article = self.query.filter(self.id == a_id).first()
+
+        if not article:
+            return None
+
+        article.hit += 1
+        article.last_view = datetime.utcnow()
+        return article
