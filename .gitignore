@@ -2,3 +2,4 @@
 .env*
 *.pyc
 .venv
+settings.py

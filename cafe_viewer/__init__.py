@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
+from flask.ext.sqlalchemy import SQLAlchemy
 from requests import get
 from lxml import html
+from settings import FLASK_APP_CONFIG
 
 
 app = Flask(__name__)
+app.config.update(FLASK_APP_CONFIG)
+db = SQLAlchemy()
 
 
 @app.route('/')
@@ -65,6 +69,8 @@ def parse():
     else:
         return jsonify(ok=False, msg=u'could not find article_id')
 
+    print club_id, article_id
+
     return jsonify(ok=True,
                    url=url,
                    article={
@@ -74,3 +80,10 @@ def parse():
                        'club_id': club_id,
                        'article_id': article_id,
                    })
+
+
+class Article(db.Model):
+    __tablename__ = 'articles'
+    id = db.Column(db.Integer, primary_key=1)
+    club_id = db.Column(db.String(100), index=1)
+    article_id = db.Column(db.Integer, index=1)
