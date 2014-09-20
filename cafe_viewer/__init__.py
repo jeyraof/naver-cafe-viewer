@@ -57,13 +57,13 @@ def parse():
         return jsonify(ok=False, msg=u'could not find content')
 
     # meta
-    sel_club_id = dom.cssselect('form[name="delFrm"] input[name="clubid"]')
+    sel_club_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="clubid"]')
     if sel_club_id:
         club_id = sel_club_id[0].get('value')
     else:
         return jsonify(ok=False, msg=u'could not find club_id')
 
-    sel_article_id = dom.cssselect('form[name="delFrm"] input[name="articleid"]')
+    sel_article_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="articleid"]')
     if sel_article_id:
         article_id = sel_article_id[0].get('value')
     else:
