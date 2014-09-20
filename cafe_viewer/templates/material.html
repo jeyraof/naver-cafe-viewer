@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NCV - {{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='material.css') }}"/>
+</head>
+<body>
+    <div class="header">
+        <span class="title">Naver Cafe Viewer</span>
+        <span class="writer">by.
+            <a class="link" href="//github.com/jeyraof/naver-cafe-viewer" target="_blank">@jeyraof</a>
+        </span>
+
+        <div class="new">
+            <form action="#">
+                <input type="text" name="link" placeholder="http://"/>
+            </form>
+        </div>
+    </div>
+    <div class="layout">
+        <div class="article-list-box">
+            <ul class="article-list">
+                <li class="article-list-item">
+                    <a href="#">
+                        <div class="thumbnail">
+
+                        </div>
+                        <div class="text">
+                            <span class="title">
+                                제목 제목 제목 제목 제목 제목 제목 제목
+                                <span class="end-white"></span>
+                            </span>
+                            <span class="writer">
+                                By 누구 누구 누구
+                                <span class="end-white"></span>
+                            </span>
+
+                            <span class="hit">5번째 조회</span>
+                            <span class="view-at">n초전</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="article-list-item">
+                    <a href="#">
+                        <div class="text">
+                            <span class="title">
+                                제목 제목 제목 제목 제목 제목 제목 제목
+                                <span class="end-white"></span>
+                            </span>
+                            <span class="writer">
+                                By 누구 누구 누구
+                                <span class="end-white"></span>
+                            </span>
+
+                            <span class="hit">5번째 조회</span>
+                            <span class="view-at">n초전</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content-box">
+            내용
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    WebFontConfig = {google: { families: [ 'Roboto:400,300,500:latin' ] }};
+    (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+    </script>
+</body>
+</html>

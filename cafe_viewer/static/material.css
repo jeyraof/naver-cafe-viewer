@@ -1,0 +1,130 @@
+* {
+  font-family: 'Roboto', 'Malgun Gothic', 'Dotum' sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #424242;
+}
+body {
+  background: #eeeeee;
+  min-width: 1000px;
+}
+a {
+  color: #0277bd;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+.header {
+  background: #ffffff;
+  box-shadow: 0 2px 2px #bdbdbd;
+  padding: 0 1.4em;
+}
+.header .title {
+  font-size: 2em;
+  line-height: 2.4em;
+}
+.header .writer {
+  color: #9e9e9e;
+  margin-left: 15px;
+}
+.header .new {
+  float: right;
+}
+.header .new input[type="text"] {
+  width: 250px;
+  border: 0;
+  border-bottom: 1px solid #9e9e9e;
+  font-size: 1.14em;
+  padding: 0.5em 0 0.3em 0;
+  margin: 0.9em 0 0 0;
+}
+.layout {
+  clear: both;
+  padding: 20px;
+}
+.layout .article-list-box {
+  float: left;
+  width: 300px;
+}
+.layout .article-list-box .article-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.layout .article-list-box .article-list .article-list-item {
+  margin-bottom: 10px;
+  background: #ffffff;
+  box-shadow: 1px 1px 4px #bdbdbd;
+  border-radius: 2px;
+  height: 135px;
+  clear: both;
+}
+.layout .article-list-box .article-list .article-list-item > a {
+  display: block;
+}
+.layout .article-list-box .article-list .article-list-item .thumbnail {
+  float: left;
+  width: 90px;
+  height: 135px;
+  background: gray;
+  margin-right: 10px;
+}
+.layout .article-list-box .article-list .article-list-item .text {
+  position: relative;
+  padding: 20px;
+  height: 95px;
+}
+.layout .article-list-box .article-list .article-list-item .text .title {
+  display: block;
+  color: #75757;
+  font-size: 1.14em;
+  line-height: 1.7em;
+  font-weight: 500;
+  height: 1.9em;
+  overflow: hidden;
+  position: relative;
+}
+.layout .article-list-box .article-list .article-list-item .text .writer {
+  display: block;
+  color: #9e9e9e;
+  font-size: .8em;
+  line-height: 1.4em;
+  font-weight: 300;
+  height: 1.4em;
+  overflow: hidden;
+  position: relative;
+}
+.layout .article-list-box .article-list .article-list-item .text .view-at {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  color: #757575;
+  font-size: .9em;
+  font-weight: 300;
+}
+.layout .article-list-box .article-list .article-list-item .text .hit {
+  position: absolute;
+  bottom: 20px;
+  color: #757575;
+  font-size: .9em;
+  font-weight: 300;
+}
+.layout .content-box {
+  margin-left: 320px;
+}
+.end-white {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0), #ffffff);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, StartColorStr='#00ffffff', EndColorStr='#ffffff');
+  bottom: 0;
+  height: inherit;
+  max-height: 100%;
+  position: absolute;
+  right: 0;
+  width: 60px;
+}

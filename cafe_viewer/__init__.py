@@ -7,6 +7,7 @@ from lxml import html
 from settings import FLASK_APP_CONFIG
 
 from datetime import datetime
+import re
 
 app = Flask(__name__)
 app.config.update(FLASK_APP_CONFIG)
@@ -82,6 +83,11 @@ def parse():
                        'article_id': article_id,
                    })
 
+@app.route('/material')
+def material():
+    opt = {}
+    return render_template('material.html', **opt)
+
 
 class Article(db.Model):
     __tablename__ = 'articles'
@@ -97,8 +103,9 @@ class Article(db.Model):
         self.last_view = datetime.utcnow()
         super(Article, self).__init__(**kwargs)
 
-    def get_by(self, a_id):
-        article = self.query.filter(self.id == a_id).first()
+    @classmethod
+    def get_by(cls, a_id):
+        article = cls.query.filter(cls.id == a_id).first()
 
         if not article:
             return None
@@ -106,3 +113,11 @@ class Article(db.Model):
         article.hit += 1
         article.last_view = datetime.utcnow()
         return article
+
+    @property
+    def cover(self):
+        dom = html.fromstring(self.content)
+        image = dom.cssselect('img')
+        if not image:
+            return None
+        return image[0].get('src')
