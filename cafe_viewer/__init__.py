@@ -131,8 +131,11 @@ class Article(db.Model):
         # thumbnail
         sel_thumbnail = dom.cssselect('div#postContent img')
         thumbnail = None
-        if sel_thumbnail:
-            thumbnail = sel_thumbnail[0].get('src')
+        for sel_thumb in sel_thumbnail:
+            img_url = sel_thumb.get('src', '')
+            if 'mcafethumb' in img_url:
+                thumbnail = img_url
+                break
 
         article = cls(**{
             'club_id': club_id,
