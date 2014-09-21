@@ -71,8 +71,6 @@ def parse():
     else:
         return jsonify(ok=False, msg=u'could not find article_id')
 
-    print club_id, article_id
-
     return jsonify(ok=True,
                    url=url,
                    article={
@@ -82,6 +80,7 @@ def parse():
                        'club_id': club_id,
                        'article_id': article_id,
                    })
+
 
 @app.route('/material')
 def material():
@@ -94,10 +93,14 @@ class Article(db.Model):
     id = db.Column(db.Integer, primary_key=1)
     club_id = db.Column(db.Integer, index=1, nullable=0)
     article_id = db.Column(db.Integer, index=1, nullable=0)
+    title = db.Column(db.String(255), nullable=0)
     content = db.Column(db.Text)
+    thumbnail = db.Column(db.String(255), nullable=1)
     author = db.Column(db.String(50))
     hit = db.Column(db.Integer, default=0)
     last_view = db.Column(db.DateTime, nullable=0, default=0)
+
+    __table_args__ = (db.UniqueConstraint('club_id', 'article_id', name='article_group'),)
 
     def __init__(self, **kwargs):
         self.last_view = datetime.utcnow()
@@ -121,3 +124,72 @@ class Article(db.Model):
         if not image:
             return None
         return image[0].get('src')
+
+    @classmethod
+    def crawl(cls, url=None):
+        if not url:
+            return None
+
+        if not 'http://' in url:
+            url = 'http://' + url
+
+        if not 'm.cafe.naver.com' in url:
+            url = url.replace('cafe.naver.com', 'm.cafe.naver.com')
+
+        response = get(url=url, headers={'Referer': 'http://search.naver.com'})
+        html_string = response.text
+        dom = html.fromstring(html_string)
+
+        # meta
+        sel_club_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="clubid"]')
+        if not sel_club_id:
+            return None
+        club_id = sel_club_id[0].get('value')
+
+        sel_article_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="articleid"]')
+        if not sel_article_id:
+            return None
+        article_id = sel_article_id[0].get('value')
+
+        # check database
+        article = cls.query.filter(cls.club_id == club_id, cls.article_id == article_id).first()
+        if article:
+            return article
+
+        # title
+        sel_title = dom.cssselect('div.post_tit h2')
+        if not sel_title:
+            return None
+        title = sel_title[0].text_content().strip()
+
+        # author
+        sel_author = dom.cssselect('a.nick')
+        if not sel_author:
+            return None
+        author = sel_author[0].text_content().strip()
+
+        # content
+        sel_content = dom.cssselect('div#postContent')
+        if not sel_content:
+            return None
+        content = html.tostring(sel_content[0]).strip()
+
+        # thumbnail
+        sel_thumbnail = dom.cssselect('div#postContent img')
+        thumbnail = None
+        if sel_thumbnail:
+            thumbnail = sel_thumbnail[0].get('src')
+
+        article = cls(**{
+            'club_id': club_id,
+            'article_id': article_id,
+            'title': title.encode('unicode_escape'),
+            'content': content.encode('unicode_escape'),
+            'thumbnail': thumbnail,
+            'author': author.encode('unicode_escape'),
+        })
+
+        db.session.add(article)
+        db.session.commit()
+        db.session.refresh(article)
+        return article
