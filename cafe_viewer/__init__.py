@@ -6,8 +6,7 @@ from requests import get
 from lxml import html
 from settings import FLASK_APP_CONFIG
 
-from datetime import datetime
-import re
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config.update(FLASK_APP_CONFIG)
@@ -187,3 +186,23 @@ class Article(db.Model):
         db.session.commit()
         db.session.refresh(article)
         return article
+
+
+@app.template_filter()
+def pretty_date(value):
+    if not isinstance(value, datetime):
+        return value
+    now = datetime.utcnow()
+    if value > now:
+        return value  # 이건 어떻게 처리해야 하는거야?
+    delta = now - value
+    if delta < timedelta(minutes=1):
+        return u'%s초 전' % delta.seconds
+    elif delta < timedelta(hours=1):
+        return u'%s분 전' % (delta.seconds / 60)
+    elif delta < timedelta(days=1):
+        return u'%s시간 전' % (delta.seconds / 3600)
+    elif now.year == value.year:
+        return value.strftime(u'%m/%d')
+    else:
+        return value.strftime(u'%y/%m/%d')
