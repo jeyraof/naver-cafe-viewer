@@ -21,43 +21,30 @@
     <div class="layout">
         <div class="article-list-box">
             <ul class="article-list">
+                {% for article in article_list %}
                 <li class="article-list-item">
                     <a href="#">
+                        {% if article.thumbnail %}
                         <div class="thumbnail">
-
+                            <img src="{{ article.thumbnail }}" alt="{{ article.title.decode('unicode_escape') }}"/>
                         </div>
+                        {% endif %}
                         <div class="text">
                             <span class="title">
-                                제목 제목 제목 제목 제목 제목 제목 제목
+                                {{ article.title.decode('unicode_escape') }}
                                 <span class="end-white"></span>
                             </span>
                             <span class="writer">
-                                By 누구 누구 누구
+                                By {{ article.author.decode('unicode_escape') }}
                                 <span class="end-white"></span>
                             </span>
 
-                            <span class="hit">5번째 조회</span>
-                            <span class="view-at">n초전</span>
+                            <span class="hit">{{ article.hit }}번째 조회</span>
+                            <span class="view-at">{{ article.last_view }}</span>
                         </div>
                     </a>
                 </li>
-                <li class="article-list-item">
-                    <a href="#">
-                        <div class="text">
-                            <span class="title">
-                                제목 제목 제목 제목 제목 제목 제목 제목
-                                <span class="end-white"></span>
-                            </span>
-                            <span class="writer">
-                                By 누구 누구 누구
-                                <span class="end-white"></span>
-                            </span>
-
-                            <span class="hit">5번째 조회</span>
-                            <span class="view-at">n초전</span>
-                        </div>
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="content-box">
