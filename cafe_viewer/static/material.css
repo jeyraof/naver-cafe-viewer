@@ -136,15 +136,22 @@ a {
   right: 0;
   width: 60px;
 }
-.material-ink {
+.ink {
   display: block;
   position: absolute;
   background: #e0e0e0;
   border-radius: 100%;
   transform: scale(0);
 }
-.material-ink.animate {
+.ink.animate {
   animation: ripple 0.65s linear;
+  -webkit-animation: ripple 0.65s linear;
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
 }
 @keyframes ripple {
   100% {

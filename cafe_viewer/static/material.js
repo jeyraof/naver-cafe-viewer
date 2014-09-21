@@ -8,15 +8,15 @@ $(document).ready(function() {
   // http://thecodeplayer.com/walkthrough/ripple-click-effect-google-material-design
   $body.on('click', 'a.article-link', function(e) {
     var parent = $(this).parent();
-    if (parent.find(".material-ink").length == 0) parent.prepend("<span class='material-ink'></span>");
-    var materialInk = parent.find(".material-ink");
-    materialInk.removeClass("animate");
-    if (!materialInk.height() && !materialInk.width()) {
+    if (parent.find(".ink").length == 0) parent.prepend("<span class='ink'></span>");
+    var ink = parent.find(".ink");
+    ink.removeClass("animate");
+    if (!ink.height() && !ink.width()) {
       var d = Math.max(parent.outerWidth(), parent.outerHeight());
-      materialInk.css({height: d, width: d});
+      ink.css({height: d, width: d});
     }
-    var x = e.pageX - parent.offset().left - materialInk.width() / 2;
-    var y = e.pageY - parent.offset().top - materialInk.height() / 2;
-    materialInk.css({top: y + 'px', left: x + 'px'}).addClass("animate");
+    var x = e.pageX - parent.offset().left - ink.width() / 2;
+    var y = e.pageY - parent.offset().top - ink.height() / 2;
+    ink.css({top: y + 'px', left: x + 'px'}).addClass("animate");
   });
 });
