@@ -25,6 +25,27 @@ $(document).ready(function() {
     var y = e.pageY - parent.offset().top - materialInk.height() / 2;
     materialInk.css({top: y + 'px', left: x + 'px'}).addClass("animate");
   });
+
+  $body.on('submit', 'form#new-article', function() {
+    var form = document.getElementById('new-article');
+    $.ajax({
+      type: 'POST',
+      url: form.action,
+      cache: false,
+      async: false,
+      data: $(form).serialize(),
+      dataType: 'json',
+      success: function(data) {
+        if (data.ok) {
+          window.location.hash = '#article@' + data.article_id;
+        } else{
+          alert(data.msg);
+        }
+      }
+    });
+    $(form).val('');
+    return false;
+  });
 });
 
 function ncvRoute() {

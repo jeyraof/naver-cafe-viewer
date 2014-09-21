@@ -99,6 +99,18 @@ def get_article(article_id):
     return render_template('article.html', **opt)
 
 
+@app.route('/api/article/new', methods=['POST'])
+def new_article():
+    url = request.form.get('link')
+    article = Article.crawl(url)
+
+    if article:
+        opt = {'ok': True, 'article_id': article.id}
+    else:
+        opt = {'ok': False, 'msg': u'알아올 수 없는 포스트 입니다.'}
+    return jsonify(**opt)
+
+
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.Integer, primary_key=1)
@@ -147,34 +159,40 @@ class Article(db.Model):
         # meta
         sel_club_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="clubid"]')
         if not sel_club_id:
+            print 1
             return None
         club_id = sel_club_id[0].get('value')
 
         sel_article_id = dom.cssselect('form[name="articleDeleteFrm"] input[name="articleid"]')
         if not sel_article_id:
+            print 2
             return None
         article_id = sel_article_id[0].get('value')
 
         # check database
         article = cls.query.filter(cls.club_id == club_id, cls.article_id == article_id).first()
         if article:
+            print 3
             return article
 
         # title
         sel_title = dom.cssselect('div.post_tit h2')
         if not sel_title:
+            print 4
             return None
         title = sel_title[0].text_content().strip()
 
         # author
         sel_author = dom.cssselect('a.nick')
         if not sel_author:
+            print 5
             return None
         author = sel_author[0].text_content().strip()
 
         # content
         sel_content = dom.cssselect('div#postContent')
         if not sel_content:
+            print 6
             return None
         content = html.tostring(sel_content[0]).strip()
 
