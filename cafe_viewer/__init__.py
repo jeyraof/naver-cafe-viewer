@@ -84,7 +84,9 @@ def parse():
 
 @app.route('/material')
 def material():
-    opt = {}
+    opt = {
+        'article_list': Article.query.order_by('-last_view')[:10]
+    }
     return render_template('material.html', **opt)
 
 
@@ -116,14 +118,6 @@ class Article(db.Model):
         article.hit += 1
         article.last_view = datetime.utcnow()
         return article
-
-    @property
-    def cover(self):
-        dom = html.fromstring(self.content)
-        image = dom.cssselect('img')
-        if not image:
-            return None
-        return image[0].get('src')
 
     @classmethod
     def crawl(cls, url=None):
@@ -184,7 +178,7 @@ class Article(db.Model):
             'club_id': club_id,
             'article_id': article_id,
             'title': title.encode('unicode_escape'),
-            'content': content.encode('unicode_escape'),
+            'content': content,
             'thumbnail': thumbnail,
             'author': author.encode('unicode_escape'),
         })
