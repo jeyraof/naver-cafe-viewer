@@ -46,6 +46,21 @@ $(document).ready(function() {
     $(form).val('');
     return false;
   });
+
+  $body.on('click', '.comment-load-btn', function() {
+    $.ajax({
+      url: this.href,
+      dataType: 'html',
+      success: function(data) {
+        if (data === '') {
+          alert('댓글이 없습니다.');
+        } else {
+          $('.comment-list').html(data);
+        }
+      }
+    });
+    return false;
+  });
 });
 
 function ncvRoute() {

@@ -8,6 +8,7 @@
 body {
   background: #eeeeee;
   min-width: 1000px;
+  padding-bottom: 100px;
 }
 
 a {
@@ -141,6 +142,8 @@ a {
     margin-left: 320px;
     background: #ffffff;
     box-shadow: 1px 1px 4px #bdbdbd;
+    position: relative;
+    width: 743px;
 
     .article {
       .article-header {
@@ -191,6 +194,54 @@ a {
             font-size: inherit;
           }
         }
+      }
+    }
+    .comment-list {
+      background: #eeeeee;
+
+      .comment-item {
+        padding: 20px;
+        border-top: 1px solid #e0e0e0;
+
+        &.re, &.re2, &.re3 {
+
+        }
+
+        .writer {
+          font-size: .9em;
+          line-height: 1.8em;
+          color: #424242;
+        }
+
+        .comment-content {
+          margin-top: 20px;
+          font-size: .9em;
+          line-height: 1.8em;
+        }
+      }
+
+      .comment-barrier {height:25px;}
+    }
+    .comment-load {
+      position: absolute;
+      bottom: -25px;
+      left: 350px;
+      background: #fbfbfb;
+      box-shadow: 0 1px 4px #616161;
+      border-radius: 4em;
+      width: 4em;
+      height: 4em;
+      line-height: 4em;
+      text-align: center;
+
+      > a {
+        display: block;
+        width: inherit;
+        height: inherit;
+        font-weight: 300;
+        font-size: 2em;
+        line-height: inherit;
+        color: #7e7e7e;
       }
     }
   }

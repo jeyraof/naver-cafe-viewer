@@ -16,6 +16,10 @@
             </div>
         </div>
     </div>
+    <div class="comment-list"></div>
+    <div class="comment-load">
+        <a class="comment-load-btn" href="{{ url_for('get_comments', club_id=article.club_id, article_id=article.article_id) }}">+</a>
+    </div>
 {% else %}
 <div class="content">
 글을 찾을 수 없습니다.

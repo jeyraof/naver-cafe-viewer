@@ -7,6 +7,7 @@
 body {
   background: #eeeeee;
   min-width: 1000px;
+  padding-bottom: 100px;
 }
 a {
   color: #0277bd;
@@ -123,6 +124,8 @@ a {
   margin-left: 320px;
   background: #ffffff;
   box-shadow: 1px 1px 4px #bdbdbd;
+  position: relative;
+  width: 743px;
 }
 .layout .content-box .article .article-header {
   background: #eeeeee;
@@ -164,6 +167,47 @@ a {
   padding: 0;
   line-height: inherit;
   font-size: inherit;
+}
+.layout .content-box .comment-list {
+  background: #eeeeee;
+}
+.layout .content-box .comment-list .comment-item {
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+.layout .content-box .comment-list .comment-item .writer {
+  font-size: .9em;
+  line-height: 1.8em;
+  color: #424242;
+}
+.layout .content-box .comment-list .comment-item .comment-content {
+  margin-top: 20px;
+  font-size: .9em;
+  line-height: 1.8em;
+}
+.layout .content-box .comment-list .comment-barrier {
+  height: 25px;
+}
+.layout .content-box .comment-load {
+  position: absolute;
+  bottom: -25px;
+  left: 350px;
+  background: #fbfbfb;
+  box-shadow: 0 1px 4px #616161;
+  border-radius: 4em;
+  width: 4em;
+  height: 4em;
+  line-height: 4em;
+  text-align: center;
+}
+.layout .content-box .comment-load > a {
+  display: block;
+  width: inherit;
+  height: inherit;
+  font-weight: 300;
+  font-size: 2em;
+  line-height: inherit;
+  color: #7e7e7e;
 }
 .end-white {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
