@@ -98,8 +98,8 @@ class Article(db.Model):
     content = db.Column(db.Text)
     thumbnail = db.Column(db.String(255), nullable=1)
     author = db.Column(db.String(50))
-    hit = db.Column(db.Integer, default=0)
-    last_view = db.Column(db.DateTime, nullable=0, default=0)
+    hit = db.Column(db.Integer, default=1)
+    last_view = db.Column(db.DateTime, nullable=0)
 
     __table_args__ = (db.UniqueConstraint('club_id', 'article_id', name='article_group'),)
 
