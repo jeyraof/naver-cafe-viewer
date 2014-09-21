@@ -124,6 +124,9 @@ class Article(db.Model):
         if not 'http://' in url:
             url = 'http://' + url
 
+        if not 'cafe.naver.com' in url:
+            return None
+
         if not 'm.cafe.naver.com' in url:
             url = url.replace('cafe.naver.com', 'm.cafe.naver.com')
 
