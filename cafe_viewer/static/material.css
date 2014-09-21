@@ -65,6 +65,7 @@ a {
 .layout .article-list-box .article-list .article-list-item > a {
   display: block;
   user-select: none;
+  -webkit-user-select: none;
   position: relative;
 }
 .layout .article-list-box .article-list .article-list-item .thumbnail {
@@ -120,6 +121,9 @@ a {
 }
 .layout .content-box {
   margin-left: 320px;
+  background: #ffffff;
+  box-shadow: 1px 1px 4px #bdbdbd;
+  border-radius: 2px;
 }
 .end-white {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));
@@ -136,26 +140,35 @@ a {
   right: 0;
   width: 60px;
 }
-.ink {
+.material-ink {
   display: block;
   position: absolute;
   background: #e0e0e0;
   border-radius: 100%;
   transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
 }
-.ink.animate {
+.material-ink.animate {
   animation: ripple 0.65s linear;
+  -moz-animation: ripple 0.65s linear;
   -webkit-animation: ripple 0.65s linear;
-}
-@-webkit-keyframes ripple {
-  100% {
-    opacity: 0;
-    transform: scale(2.5);
-  }
 }
 @keyframes ripple {
   100% {
     opacity: 0;
     transform: scale(2.5);
+  }
+}
+@-moz-keyframes ripple {
+  100% {
+    opacity: 0;
+    -moz-transform: scale(2.5);
+  }
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
   }
 }

@@ -73,6 +73,7 @@ a {
         > a {
           display: block;
           user-select: none;
+          -webkit-user-select: none;
           position: relative;
         }
 
@@ -138,6 +139,9 @@ a {
   }
   .content-box {
     margin-left: 320px;
+    background: #ffffff;
+    box-shadow: 1px 1px 4px #bdbdbd;
+    border-radius: 2px;
   }
 }
 
@@ -157,23 +161,22 @@ a {
   width: 60px;
 }
 
-.ink {
+.material-ink {
   display: block;
   position: absolute;
   background: #e0e0e0;
   border-radius: 100%;
   transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
+
+  &.animate {
+    animation: ripple 0.65s linear;
+    -moz-animation: ripple 0.65s linear;
+    -webkit-animation: ripple 0.65s linear;
+  }
 }
 
-.ink.animate {
-  animation: ripple 0.65s linear;
-  -webkit-animation: ripple 0.65s linear;
-}
-
-@-webkit-keyframes ripple {
-	100% {opacity: 0; transform: scale(2.5);}
-}
-
-@keyframes ripple {
-  100% {opacity: 0;transform: scale(2.5);}
-}
+@keyframes ripple {100% {opacity: 0;transform: scale(2.5);}}
+@-moz-keyframes ripple {100% {opacity: 0; -moz-transform: scale(2.5);}}
+@-webkit-keyframes ripple {100% {opacity: 0; -webkit-transform: scale(2.5);}}
