@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NCV - {{ title }}</title>
+    <title>NCV</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='material.css') }}"/>
 </head>
 <body>
     <div class="header">
-        <span class="title">Naver Cafe Viewer</span>
+        <span class="title" data-root="{{ url_for('material') }}">Naver Cafe Viewer</span>
         <span class="writer">by.
             <a class="link" href="//github.com/jeyraof/naver-cafe-viewer" target="_blank">@jeyraof</a>
         </span>
@@ -23,7 +23,7 @@
             <ul class="article-list">
                 {% for article in article_list %}
                 <li class="article-list-item">
-                    <a class="article-link" href="#{{ article.id }}">
+                    <a class="article-link" href="#article@{{ article.id }}">
                         {% if article.thumbnail %}
                         <div class="thumbnail">
                             <img src="{{ article.thumbnail }}" alt="{{ article.title.decode('unicode_escape') }}"/>
@@ -66,5 +66,6 @@
         s.parentNode.insertBefore(wf, s);
     })();
     </script>
+    <script>ncvRoute();</script>
 </body>
 </html>

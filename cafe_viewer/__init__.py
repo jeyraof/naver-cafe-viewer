@@ -89,6 +89,16 @@ def material():
     return render_template('material.html', **opt)
 
 
+@app.route('/api/article/<int:article_id>')
+def get_article(article_id):
+    article = Article.get_by(article_id)
+    opt = {
+        'article': article,
+    }
+
+    return render_template('article.html', **opt)
+
+
 class Article(db.Model):
     __tablename__ = 'articles'
     id = db.Column(db.Integer, primary_key=1)
@@ -116,6 +126,7 @@ class Article(db.Model):
 
         article.hit += 1
         article.last_view = datetime.utcnow()
+        db.session.commit()
         return article
 
     @classmethod
@@ -206,3 +217,9 @@ def pretty_date(value):
         return value.strftime(u'%m/%d')
     else:
         return value.strftime(u'%y/%m/%d')
+
+
+@app.template_filter()
+def ignore_nl(txt):
+    result = txt.replace('\\r', '').replace('\\n', '').replace('\\t', '')
+    return result

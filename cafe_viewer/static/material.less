@@ -26,6 +26,7 @@ a {
   .title {
     font-size: 2em;
     line-height: 2.4em;
+    cursor: pointer;
   }
 
   .writer {
@@ -64,7 +65,6 @@ a {
         margin-bottom: 10px;
         background: #ffffff;
         box-shadow: 1px 1px 4px #bdbdbd;
-        border-radius: 2px;
         height: 135px;
         clear: both;
         overflow: hidden;
@@ -141,7 +141,35 @@ a {
     margin-left: 320px;
     background: #ffffff;
     box-shadow: 1px 1px 4px #bdbdbd;
-    border-radius: 2px;
+
+    .article {
+      .article-header {
+        background: #eeeeee;
+        padding: .5em 0.7em;
+
+        .article-title {
+          color: #616161;
+          font-size: 1.4em;
+          line-height: 2em;
+        }
+
+        .article-meta {
+          font-size: .8em;
+          line-height: 1.8em;
+
+          .hit {
+            font-size: inherit;
+            line-height: inherit;
+          }
+
+          .permalink {
+            margin-left: 20px;
+            font-size: inherit;
+            line-height: inherit;
+          }
+        }
+      }
+    }
   }
 }
 
