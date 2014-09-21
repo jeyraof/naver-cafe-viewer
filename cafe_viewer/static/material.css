@@ -59,9 +59,13 @@ a {
   border-radius: 2px;
   height: 135px;
   clear: both;
+  overflow: hidden;
+  position: relative;
 }
 .layout .article-list-box .article-list .article-list-item > a {
   display: block;
+  user-select: none;
+  position: relative;
 }
 .layout .article-list-box .article-list .article-list-item .thumbnail {
   float: left;
@@ -131,4 +135,20 @@ a {
   position: absolute;
   right: 0;
   width: 60px;
+}
+.material-ink {
+  display: block;
+  position: absolute;
+  background: #e0e0e0;
+  border-radius: 100%;
+  transform: scale(0);
+}
+.material-ink.animate {
+  animation: ripple 0.65s linear;
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
 }

@@ -23,7 +23,7 @@
             <ul class="article-list">
                 {% for article in article_list %}
                 <li class="article-list-item">
-                    <a href="#">
+                    <a class="article-link" href="#{{ article.id }}">
                         {% if article.thumbnail %}
                         <div class="thumbnail">
                             <img src="{{ article.thumbnail }}" alt="{{ article.title.decode('unicode_escape') }}"/>
@@ -52,6 +52,8 @@
         </div>
     </div>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='material.js') }}"></script>
     <script type="text/javascript">
     WebFontConfig = {google: { families: [ 'Roboto:400,300,500:latin' ] }};
     (function() {
