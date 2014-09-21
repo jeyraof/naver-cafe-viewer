@@ -126,7 +126,7 @@ a {
 }
 .layout .content-box .article .article-header {
   background: #eeeeee;
-  padding: .5em 0.7em;
+  padding: .5em 1.2em;
 }
 .layout .content-box .article .article-header .article-title {
   color: #616161;
@@ -145,6 +145,25 @@ a {
   margin-left: 20px;
   font-size: inherit;
   line-height: inherit;
+}
+.layout .content-box .article .article-body {
+  padding: 1.5em;
+}
+.layout .content-box .article .article-body .article-writer {
+  font-size: .9em;
+  line-height: 1.8em;
+  color: #424242;
+}
+.layout .content-box .article .article-body .article-content {
+  margin-top: 20px;
+  font-size: .9em;
+  line-height: 1.8em;
+}
+.layout .content-box .article .article-body .article-content * {
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+  font-size: inherit;
 }
 .end-white {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, #ffffff));

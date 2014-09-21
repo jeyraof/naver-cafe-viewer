@@ -9,8 +9,11 @@
                 </a>
             </div>
         </div>
-        <div class="content">
-            {{ article.content|safe|ignore_nl }}
+        <div class="article-body">
+            <div class="article-writer">Written by {{ article.author.decode('unicode_escape') }}</div>
+            <div class="article-content">
+                {{ article.content|safe|ignore_nl }}
+            </div>
         </div>
     </div>
 {% else %}
