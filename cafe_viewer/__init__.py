@@ -130,7 +130,7 @@ class Article(db.Model):
         if not 'm.cafe.naver.com' in url:
             url = url.replace('cafe.naver.com', 'm.cafe.naver.com')
 
-        response = get(url=url, headers={'Referer': 'http://search.naver.com'})
+        response = get(url=url, headers={'Referer': 'http://m.search.naver.com/search.nhn?query=1'})
         html_string = response.text
         dom = html.fromstring(html_string)
 
