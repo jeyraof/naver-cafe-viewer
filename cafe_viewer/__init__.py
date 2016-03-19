@@ -121,13 +121,13 @@ class Article(db.Model):
         if not url:
             return None
 
-        if not 'http://' in url:
+        if 'http://' not in url:
             url = 'http://' + url
 
-        if not 'cafe.naver.com' in url:
+        if 'cafe.naver.com' not in url:
             return None
 
-        if not 'm.cafe.naver.com' in url:
+        if 'm.cafe.naver.com' not in url:
             url = url.replace('cafe.naver.com', 'm.cafe.naver.com')
 
         response = get(url=url, headers={'Referer': 'http://m.search.naver.com/search.nhn?query=1'})
@@ -214,5 +214,4 @@ def pretty_date(value):
 
 @app.template_filter()
 def ignore_nl(txt):
-    result = txt.replace('\\r', '').replace('\\n', '').replace('\\t', '')
-    return result
+    return txt.replace('\\r', '').replace('\\n', '').replace('\\t', '')
