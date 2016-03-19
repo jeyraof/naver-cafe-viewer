@@ -4,7 +4,7 @@
     <div class="comment-content">{{ comment.content }}</div>
 
     {% if comment.sticker %}
-    <div class="comment-sticker"><img src="{{ comment.sticker }}" alt=""></div>
+    <div class="comment-sticker">[emoticion: "{{ comment.sticker }}"]</div>
     {% endif %}
 </div>
 {% endfor %}
