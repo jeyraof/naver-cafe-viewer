@@ -77,11 +77,15 @@ def get_comments():
     comment_list = dom.cssselect('ul.u_cbox_list li.u_cbox_comment')
     result_comment = []
     for comment in comment_list:
-        result_comment.append({
+        tmp_cmt = {
             'class': comment.get('class', ''),
             'author': comment.cssselect('.u_cbox_name')[0].text_content().strip(),
-            'content': comment.cssselect('.u_cbox_contents')[0].text_content().strip(),
-        })
+            'content': comment.cssselect('.u_cbox_text_wrap')[0].text_content().strip(),
+        }
+        sticker = comment.cssselect('.u_cbox_sticker_section img')
+        if sticker:
+            tmp_cmt.update({'sticker': sticker[0].get('src', '')})
+        result_comment.append(tmp_cmt)
 
     return render_template('commentList.html', comment_list=result_comment)
 

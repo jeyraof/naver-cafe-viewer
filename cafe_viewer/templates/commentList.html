@@ -2,6 +2,10 @@
 <div class="comment-item {{ comment.class }}">
     <div class="writer">Written by {{ comment.author }}</div>
     <div class="comment-content">{{ comment.content }}</div>
+
+    {% if comment.sticker %}
+    <div class="comment-sticker"><img src="{{ comment.sticker }}" alt=""></div>
+    {% endif %}
 </div>
 {% endfor %}
 <div class="comment-barrier"></div>
