@@ -57,7 +57,7 @@ def get_comments():
 
     sel_comment = dom.cssselect('a.f_reply')
     if not sel_comment:
-        return None
+        return ''
 
     comment_link = sel_comment[0].get('class', '')
     comment_info_re = re.search(r'\((.*)\)', comment_link)
@@ -69,7 +69,6 @@ def get_comments():
                                                                                                           article_id,
                                                                                                           comment_sc)
 
-    print comment_url
     response = get(url=comment_url, headers={'Referer': 'http://m.search.naver.com/search.nhn?query=1'})
     html_string = response.text
     dom = html.fromstring(html_string)
