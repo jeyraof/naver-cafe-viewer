@@ -151,7 +151,7 @@ class Article(db.Model):
             return article
 
         # title
-        sel_title = dom.cssselect('div.post_tit h2')
+        sel_title = dom.cssselect('div.post_title h2.tit')
         if not sel_title:
             return None
         title = sel_title[0].text_content().strip()
