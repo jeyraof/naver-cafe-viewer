@@ -51,11 +51,11 @@ def get_comments():
     article_id = args.get('article_id')
 
     article_url = 'http://m.cafe.naver.com/ArticleRead.nhn?clubid=%s&articleid=%s' % (club_id, article_id)
-    response = get(url=article_url, headers={'Referer': 'http://search.naver.com'})
+    response = get(url=article_url, headers={'Referer': 'http://m.search.naver.com/search.nhn?query=1'})
     html_string = response.text
     dom = html.fromstring(html_string)
 
-    sel_comment = dom.cssselect('a.cmt_num')
+    sel_comment = dom.cssselect('a.f_reply')
     if not sel_comment:
         return None
 
@@ -69,19 +69,19 @@ def get_comments():
                                                                                                           article_id,
                                                                                                           comment_sc)
 
-    response = get(url=comment_url, headers={'Referer': 'http://search.naver.com'})
+    print comment_url
+    response = get(url=comment_url, headers={'Referer': 'http://m.search.naver.com/search.nhn?query=1'})
     html_string = response.text
     dom = html.fromstring(html_string)
 
-    comment_list = dom.cssselect('ul.cmt_lst li')
+    comment_list = dom.cssselect('ul.u_cbox_list li.u_cbox_comment')
     result_comment = []
     for comment in comment_list:
-        temp_comment = {
+        result_comment.append({
             'class': comment.get('class', ''),
-            'author': comment.cssselect('strong > a')[0].text_content().strip(),
-            'content': comment.cssselect('div.clst_cont > span')[0].text_content().strip(),
-        }
-        result_comment.append(temp_comment)
+            'author': comment.cssselect('.u_cbox_name')[0].text_content().strip(),
+            'content': comment.cssselect('.u_cbox_contents')[0].text_content().strip(),
+        })
 
     return render_template('commentList.html', comment_list=result_comment)
 
